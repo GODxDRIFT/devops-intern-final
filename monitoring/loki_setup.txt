@@ -1,0 +1,14 @@
+# Loki Setup Notes
+
+1. Install Loki + Promtail
+   docker run -d --name=loki -p 3100:3100 grafana/loki:2.8.0
+   docker run -d --name=promtail -v /var/log:/var/log grafana/promtail:2.8.0
+
+2. Verify Loki is running:
+   curl http://localhost:3100/metrics
+
+3. Configure Grafana to use Loki as a data source.
+   - Add datasource in Grafana (http://localhost:3000)
+   - URL: http://loki:3100
+
+4. Logs can now be queried in Grafana using LogQL.
